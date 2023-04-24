@@ -12,14 +12,58 @@ export default function Home() {
       </section>
       <section>
         <h2>📝エンジニアのブログ</h2>
-        <div>
+        <div className={styles.grid}>
           <article>
             <Link href={'/'}>
-              <img src='/images/thumbnail01.jpg' />
+              <img
+                src='/images/thumbnail01.jpg'
+                className={styles.thumbnailImage}
+              />
             </Link>
-            <Link href={'/'}>SSGとSSRの使い分け</Link>
+            <Link href={'/'} className={utilStyle.boldText}>
+              SSGとSSRの使い分け
+            </Link>
             <br />
-            <small>2020年</small>
+            <small className={utilStyle.lightText}>2020年</small>
+          </article>
+          <article>
+            <Link href={'/'}>
+              <img
+                src='/images/thumbnail01.jpg'
+                className={styles.thumbnailImage}
+              />
+            </Link>
+            <Link href={'/'} className={utilStyle.boldText}>
+              SSGとSSRの使い分け
+            </Link>
+            <br />
+            <small className={utilStyle.lightText}>2020年</small>
+          </article>
+          <article>
+            <Link href={'/'}>
+              <img
+                src='/images/thumbnail01.jpg'
+                className={styles.thumbnailImage}
+              />
+            </Link>
+            <Link href={'/'} className={utilStyle.boldText}>
+              SSGとSSRの使い分け
+            </Link>
+            <br />
+            <small className={utilStyle.lightText}>2020年</small>
+          </article>
+          <article>
+            <Link href={'/'}>
+              <img
+                src='/images/thumbnail01.jpg'
+                className={styles.thumbnailImage}
+              />
+            </Link>
+            <Link href={'/'} className={utilStyle.boldText}>
+              SSGとSSRの使い分け
+            </Link>
+            <br />
+            <small className={utilStyle.lightText}>2020年</small>
           </article>
         </div>
       </section>

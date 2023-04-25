@@ -3,8 +3,20 @@ import Layout from '../components/Layout';
 
 import utilStyle from '../styles/utils.module.css';
 import Link from 'next/link';
+import { getPostsData } from '../lib/post';
 
-export default function Home() {
+// SSGの場合
+export async function getStaticProps() {
+  const allPostsData = getPostsData();
+  console.log(allPostsData);
+  return {
+    props: {
+      allPostsData,
+    },
+  };
+}
+
+export default function Home({ allPostsData }) {
   return (
     <Layout>
       <section>
@@ -13,58 +25,18 @@ export default function Home() {
       <section>
         <h2>📝エンジニアのブログ</h2>
         <div className={styles.grid}>
-          <article>
-            <Link href={'/'}>
-              <img
-                src='/images/thumbnail01.jpg'
-                className={styles.thumbnailImage}
-              />
-            </Link>
-            <Link href={'/'} className={utilStyle.boldText}>
-              SSGとSSRの使い分け
-            </Link>
-            <br />
-            <small className={utilStyle.lightText}>2020年</small>
-          </article>
-          <article>
-            <Link href={'/'}>
-              <img
-                src='/images/thumbnail01.jpg'
-                className={styles.thumbnailImage}
-              />
-            </Link>
-            <Link href={'/'} className={utilStyle.boldText}>
-              SSGとSSRの使い分け
-            </Link>
-            <br />
-            <small className={utilStyle.lightText}>2020年</small>
-          </article>
-          <article>
-            <Link href={'/'}>
-              <img
-                src='/images/thumbnail01.jpg'
-                className={styles.thumbnailImage}
-              />
-            </Link>
-            <Link href={'/'} className={utilStyle.boldText}>
-              SSGとSSRの使い分け
-            </Link>
-            <br />
-            <small className={utilStyle.lightText}>2020年</small>
-          </article>
-          <article>
-            <Link href={'/'}>
-              <img
-                src='/images/thumbnail01.jpg'
-                className={styles.thumbnailImage}
-              />
-            </Link>
-            <Link href={'/'} className={utilStyle.boldText}>
-              SSGとSSRの使い分け
-            </Link>
-            <br />
-            <small className={utilStyle.lightText}>2020年</small>
-          </article>
+          {allPostsData.map((post) => (
+            <article key={post.id}>
+              <Link href={`/posts/${post.id}`}>
+                <img src={post.thumbnail} className={styles.thumbnailImage} />
+              </Link>
+              <Link href={`/posts/${post.id}`} className={utilStyle.boldText}>
+                {post.title}
+              </Link>
+              <br />
+              <small className={utilStyle.lightText}>{post.date}</small>
+            </article>
+          ))}
         </div>
       </section>
     </Layout>
